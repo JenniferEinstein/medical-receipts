@@ -1,0 +1,48 @@
+Notes.txt
+
+First goal: Input and output. How can a user upload an image into the app?
+
+
+Taggun. A fully integrated API to offer OCR receipt scanning & data extraction. $4/month+
+
+OCR = Optical Character Recognition
+
+
+
+
+https://github.com/tesseract-ocr/tesseract?tab=readme-ov-file#readme
+This package contains an OCR engine - libtesseract and a command line program - tesseract.
+
+Tesseract supports various image formats including PNG, JPEG and TIFF.
+
+Tesseract supports various output formats: plain text, hOCR (HTML), PDF, invisible-text-only PDF, TSV, ALTO and PAGE.
+
+You should note that in many cases, in order to get better OCR results, you'll need to improve the quality of the image you are giving Tesseract.
+
+This project does not include a GUI application. If you need one, please see the 3rdParty documentation.
+
+```
+tesseract imagename outputbase [-l lang] [--oem ocrenginemode] [--psm pagesegmode] [configfiles...]
+```
+
+https://tesseract.projectnaptha.com/
+Tesseract.js is a pure Javascript port of the popular Tesseract OCR engine.
+https://github.com/naptha/tesseract.js#tesseractjs
+
+Tesseract.js wraps a webassembly port of the Tesseract OCR Engine. It works in the browser using webpack, esm, or plain script tags with a CDN and on the server with Node.js. After you install it, using it is as simple as:
+
+import { createWorker } from 'tesseract.js';
+
+(async () => {
+  const worker = await createWorker('eng');
+  const ret = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
+  console.log(ret.data.text);
+  await worker.terminate();
+})();
+When recognizing multiple images, users should create a worker once, run worker.recognize for each image, and then run worker.terminate() once at the end (rather than running the above snippet for every image).
+
+Installation
+Tesseract.js works with a <script> tag via local copy or CDN, with webpack via npm and on Node.js with npm/yarn.
+
+CDN = Content Delivery Network. Interconnected servers that speed up webpage loading for data-heavy applications.
+
